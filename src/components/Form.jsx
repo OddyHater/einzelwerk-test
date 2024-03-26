@@ -14,6 +14,10 @@ const formWrapperClassName = cx(
   'rounded-32px',
 );
 
+const inputsContainerClassName = cx(
+  'grid grid-cols-2 gap-16px'
+);
+
 const submitButtonClassName = cx(
   'flex justify-center items-center',
   'mt-auto h-64px',
@@ -22,7 +26,7 @@ const submitButtonClassName = cx(
 
   'bg-ui-blue-600 hover:bg-ui-blue-500',
   'rounded-10000px'
-)
+);
 
 const Form = () => {
   return (
@@ -31,8 +35,15 @@ const Form = () => {
         title={'Drop us a line'}
         subtitle={'Our documentary campaigns feature leading figures, organisations and leaders, in open and candid discussions.'}
       />
+      {/* Вынести form в компонент */}
+      {/* Перенести стили в переменную */}
       <form className='flex-1 flex flex-col'>
-        <button 
+        <div className={inputsContainerClassName}>
+          {/* Вынести инпуты в компоненты */}
+          {/* Перенести стили в переменную */}
+          <input type="text" name="name" id="name" placeholder='Name' className='col-span-full' /> 
+        </div>
+        <button
           className={submitButtonClassName}
           type='submit'
         >
