@@ -12,7 +12,12 @@ module.exports = {
         '64px': '64px',
       },
       padding: {
+        '20px': '20px',
         '40px': '40px',
+      },
+      margin: {
+        '16px': '16px',
+        '32px': '32px',
       },
       gap: {
         '16px': '16px',
@@ -26,6 +31,7 @@ module.exports = {
         'ui-gray': {
           100: '#F3F4F6',
           200: '#E5E7EB',
+          500: '#6B7280',
           700: '#374151',
           950: '#030712',
           'bg': 'rgba(3, 7, 18, 0.72)',

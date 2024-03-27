@@ -1,4 +1,5 @@
 import "../app/globals.css";
+import { inter } from "./fonts";
 
 export const metadata = {
   title: "Einzelwerk Test",
@@ -7,7 +8,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );
 }
