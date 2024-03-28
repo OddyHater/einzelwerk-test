@@ -20,3 +20,7 @@ body {
 
   background-color: theme('colors.ui-gray.bg');
 }
+
+input:checked + svg {
+  display: block;
+}
