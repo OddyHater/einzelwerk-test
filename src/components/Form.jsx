@@ -3,9 +3,11 @@
 import React from 'react';
 import Select from 'react-select';
 import { cx } from 'class-variance-authority';
+import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 
 import TitleContainer from './TitleContainer';
+import Document from './Document';
 
 const formWrapperClassName = cx(
   'flex-1',
@@ -19,12 +21,12 @@ const formWrapperClassName = cx(
 );
 
 const inputsContainerClassName = cx(
-  'grid grid-cols-2 gap-16px'
+  'grid grid-cols-2 gap-16px mb-16px'
 );
 
 const submitButtonClassName = cx(
   'flex justify-center items-center',
-  'mt-auto h-64px',
+  'h-64px',
 
   'font-medium text-18px text-white',
 
@@ -37,14 +39,23 @@ const inputClassName = cx(
   'px-20px',
   'bg-gray-100',
   'rounded-20px border border-ui-gray-200',
-  'text-18px font-medium',
+  'text-18px font-medium text-ui-gray-950',
   'focus:outline-none',
 );
 
 const checkboxContainer = cx(
-  'flex gap-16px items-center',
+  'flex gap-16px items-center mt-auto mb-24px',
   'text-18px text-ui-gray-500 leading-26px'
-)
+);
+
+const selectClassName = cx(
+  'h-64px',
+  'flex',
+  'bg-gray-100',
+  'rounded-20px border border-ui-gray-200',
+  'text-18px font-medium',
+  'justify-between',
+);
 
 const options = [
   { value: 'junior', label: 'Junior' },
@@ -81,16 +92,26 @@ const Form = () => {
 
           <Select
             instanceId={'grade'}
-            className={`${inputClassName} col-span-full`}
+            unstyled
+            maxMenuHeight={'auto'}
+            className={`${selectClassName} col-span-full`}
+            classNames={{
+              control: () => 'flex-1 text-ui-gray-400 px-20px hover:cursor-pointer',
+              menu: () => 'mt-8px bg-ui-gray-100 rounded-20px font-arboria',
+              option: ({ isFocused, isSelected }) => 
+              clsx(
+                isSelected && 'text-ui-gray-950',
+                'px-24px py-18px [&:not(:last-child)]:border-b-2 border-ui-gray-200 hover:cursor-pointer text-ui-gray-400'
+              ),
+              singleValue: () => 'text-ui-gray-950 font-arboria'
+            }}
             placeholder='Your skill'
             options={options}
           />
 
         </div>
 
-        <div>
-          {/*  */}
-        </div>
+        <Document />
 
         <div className={checkboxContainer}>
           <input type="checkbox" name='privacy' id='privacy' required />

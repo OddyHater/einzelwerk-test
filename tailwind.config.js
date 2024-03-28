@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        arboria: ['"Arboria-medium"']
+      },
       maxWidth: {
         '640px': '640px',
       },
@@ -13,10 +16,15 @@ module.exports = {
       },
       padding: {
         '20px': '20px',
+        '18px': '18px',
+        '24px': '24px',
         '40px': '40px',
       },
       margin: {
+        '8px': '8px',
+        '12px': '12px',
         '16px': '16px',
+        '24px': '24px',
         '32px': '32px',
       },
       gap: {
@@ -31,6 +39,7 @@ module.exports = {
         'ui-gray': {
           100: '#F3F4F6',
           200: '#E5E7EB',
+          400: '#9CA3AF',
           500: '#6B7280',
           700: '#374151',
           950: '#030712',
