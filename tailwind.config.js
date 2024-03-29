@@ -6,10 +6,13 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        arboria: ['"Arboria-medium"']
+        arboria: ['"Arboria-medium"'],
       },
       maxWidth: {
         '640px': '640px',
+      },
+      maxHeight: {
+        '24px': '24px',
       },
       width: {
         '24px': '24px',
@@ -20,6 +23,7 @@ module.exports = {
       },
       padding: {
         '3px': '3px',
+        '4px': '4px',
         '6px': '6px',
         '18px': '18px',
         '20px': '20px',
@@ -27,6 +31,7 @@ module.exports = {
         '40px': '40px',
       },
       margin: {
+        '4px': '4px',
         '8px': '8px',
         '12px': '12px',
         '16px': '16px',
@@ -65,21 +70,35 @@ module.exports = {
         '10000px': '10000px',
       },
       fontSize: {
-        '40px': '40px',
-        '20px': '20px',
-        '18px': '18px',
-        '16px': '16px',
-        '12px': '12px',
+        '7xl': '90px',
+        '6xl': '64px',
+        '5xl': '48px',
+        '4xl': '40px',
+        '3xl': '32px',
+        '2xl': '24px',
+        'xl': '20px',
+        'lg': '18px',
+        'base': '16px',
+        'sm': '14px',
+        'xs': '12px',
+      },
+      lineHeight: {
+        '7xl': '96px',
+        '6xl': '72px',
+        '5xl': '56px',
+        '4xl': '44px',
+        '3xl': '40px',
+        '2xl': '32px',
+        'xl': '30px',
+        'lg': '26px',
+        'base': '24px',
+        'sm': '20px',
+        'xs': '16px',
       },
       letterSpacing: {
         '-1.2px': '-1.2px',
         '-0.2px': '-0.2px'
       },
-      lineHeigh: {
-        '1.1': '1.1',
-        '1.5': '1.5',
-        '26px': '26px'
-      }
     },
   },
   plugins: [],

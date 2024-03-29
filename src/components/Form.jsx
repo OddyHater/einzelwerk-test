@@ -2,12 +2,13 @@
 
 import React from "react";
 import Select from "react-select";
-import { cx } from "class-variance-authority";
+import { cva, cx } from "class-variance-authority";
 import clsx from "clsx";
 import { useForm, Controller } from "react-hook-form";
 
 import TitleContainer from "./TitleContainer";
 import Document from "./Document";
+import InputElement from "@/InputElement";
 
 const formWrapperClassName = cx(
   "flex-1",
@@ -21,31 +22,35 @@ const formWrapperClassName = cx(
 );
 
 const inputsContainerClassName = cx(
-  "grid grid-cols-2 gap-16px mb-16px"
+  "grid grid-cols-2 gap-16px"
 );
 
 const submitButtonClassName = cx(
   "flex justify-center items-center",
-  "h-64px",
+  "h-64px mt-24px",
 
-  "font-medium text-18px text-white",
+  "font-thin text-lg leading-lg text-white",
 
   "bg-ui-blue-600 hover:bg-ui-blue-500",
   "rounded-10000px"
 );
 
+const inputContainerClassName = cx(
+  ''
+)
+
 const inputClassName = cx(
-  "h-64px",
+  "h-64px w-full",
   "px-20px",
   "bg-gray-100",
   "rounded-20px border border-ui-gray-200",
-  "text-18px font-medium text-ui-gray-950",
+  "font-medium text-lg leading-lg text-ui-gray-950",
   "focus:outline-none"
 );
 
 const checkboxContainer = cx(
-  "flex gap-16px items-center mt-auto mb-24px",
-  "text-18px text-ui-gray-500 leading-26px"
+  "flex gap-16px items-center mt-auto",
+  "text-lg leading-lg text-ui-gray-500"
 );
 
 const selectClassName = cx(
@@ -56,6 +61,31 @@ const selectClassName = cx(
   "text-18px font-medium",
   "justify-between"
 );
+
+const errorClassName = cva(
+  [
+    'relative box-border',
+    'max-h-0',
+    'text-base leading-base text-ui-red-1',
+    'transition-all'
+  ],
+  {
+    variants: {
+      errors: {
+        true: 'pt-4px max-h-24px opacity-100',
+        false: 'opacity-0'
+      }
+    }
+  }
+);
+
+const nameValidation = {
+  required: 'Поле обязательно к заполнению',
+  minLength: {
+    value: 2,
+    message: 'Минимум 2 символа'
+  }
+};
 
 const options = [
   { value: "junior", label: "Junior" },
@@ -95,23 +125,17 @@ const Form = () => {
         <div className={inputsContainerClassName}>
           {/* Вынести инпуты в компоненты */}
           {/* Перенести стили в переменную */}
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Name"
-            className={`${inputClassName} col-span-full`}
-            {...register("name", {
-              required: 'Поле обязательно к заполнению',
-              minLength: {
-                value: 2,
-                message: 'Минимум 2 символа'
-              }
-            })}
+          
+          <InputElement
+            className={'col-span-full'}
+            type={'text'}
+            name={'name'}
+            id={'name'}
+            placeholder={'Name'}
+            register={register}
+            validateOptions={nameValidation}
+            errors={errors}
           />
-          <div>
-            {errors?.name && <>{errors?.name?.message || '123'}</>}
-          </div>
 
           <input
             type="text"
@@ -139,8 +163,8 @@ const Form = () => {
             className={`${selectClassName} col-span-full`}
             classNames={{
               control: () =>
-              "flex-1 text-ui-gray-400 px-20px hover:cursor-pointer",
-              menu: () => "mt-8px bg-ui-gray-100 rounded-20px font-arboria",
+              "flex-1 text-ui-gray-400 px-20px hover:cursor-pointer text-lg leading-lg",
+              menu: () => "mt-8px bg-ui-gray-100 rounded-20px font-arboria text-lg leading-lg",
               option: ({ isFocused, isSelected }) =>
               clsx(
                 isSelected && "text-ui-gray-950",
@@ -174,7 +198,7 @@ const Form = () => {
                 />
               </svg>
             </div>
-            <div className="select-none">I’m agree with every data you collect</div>
+            <div>I’m agree with every data you collect</div>
           </label>
         </div>
 
@@ -182,7 +206,6 @@ const Form = () => {
           Send
         </button>
       </form>
-
     </div>
   );
 };

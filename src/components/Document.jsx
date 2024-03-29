@@ -2,7 +2,7 @@ import React from 'react';
 import { cx } from 'class-variance-authority';
 
 const wrapperClassName = cx(
-  'flex gap-16px mb-24px'
+  'flex gap-16px mt-16px'
 );
 
 const textContainerClassName = cx(
@@ -11,12 +11,12 @@ const textContainerClassName = cx(
 
 const titleClassName = cx(
   'mb-16px',
-  'text-ui-gray-950 text-16px font-medium'
+  'font-medium text-base leading-xs text-ui-gray-950'
 );
 
 const subtitleClassName = cx(
   'mb-12px',
-  'text-ui-gray-400 text-12px'
+  'text-ui-gray-400 text-xs leading-xs'
 );
 
 const listClassName = cx(

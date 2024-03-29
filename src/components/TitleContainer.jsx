@@ -6,11 +6,11 @@ const containerClassName = cx(
 )
 
 const titleClassName = cx(
-  'font-semibold text-40px -tracking-1.2px text-ui-gray-950'
+  'font-semibold text-4xl leading-4xl -tracking-1.2px text-ui-gray-950'
 );
 
 const subtitleClassName = cx(
-  'text-18px -tracking-0.2px text-ui-gray-700'
+  'text-xl leading-xl -tracking-0.2px text-ui-gray-700'
 );
 
 const TitleContainer = ({ title, subtitle }) => {
