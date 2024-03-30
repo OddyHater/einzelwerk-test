@@ -3,6 +3,8 @@
 import React from "react";
 import { cx } from "class-variance-authority";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod";
 
 import TitleContainer from "./TitleContainer";
 import Document from "./Document";
@@ -35,27 +37,6 @@ const submitButtonClassName = cx(
   "rounded-10000px"
 );
 
-const checkboxContainer = cx(
-  "flex gap-16px items-center mt-auto",
-  "text-lg leading-lg text-ui-gray-500"
-);
-
-const nameValidation = {
-  required: 'Поле обязательно к заполнению',
-  minLength: {
-    value: 2,
-    message: 'Минимум 2 символа'
-  }
-};
-
-const phoneValidation = {
-  required: 'Поле обязательно к заполнению'
-};
-
-const selectValidation = { 
-  required: "Веберете грейд"
-};
-
 const options = [
   { value: "junior", label: "Junior" },
   { value: "middle", label: "Middle" },
@@ -63,6 +44,14 @@ const options = [
   { value: "lead", label: "Lead" },
   { value: "cto", label: "CTO" },
 ];
+
+const formSchema = z.object({
+  name: z.string().min(2),
+  phone: z.string().min(2),
+  email: z.string().email(),
+  grade: z.string(),
+  privacy: z.literal(true)
+})
 
 const Form = () => {
   const {
@@ -72,7 +61,9 @@ const Form = () => {
     formState: {
       errors,
     },
-  } = useForm();
+  } = useForm({
+    resolver: zodResolver(formSchema)
+  });
 
   const OnSubmit = (data) => {
     console.log(data);
@@ -100,7 +91,6 @@ const Form = () => {
             id={'name'}
             placeholder={'Name'}
             register={register}
-            validateOptions={nameValidation}
             errors={errors}
           />
 
@@ -111,7 +101,6 @@ const Form = () => {
             id={'phone'}
             placeholder="Phone"
             register={register}
-            validateOptions={phoneValidation}
             errors={errors}
           />
 
@@ -122,7 +111,6 @@ const Form = () => {
             id="email"
             placeholder="E-mail"
             register={register}
-            validateOptions={phoneValidation}
             errors={errors}
           />
 
@@ -131,7 +119,6 @@ const Form = () => {
             id={'grade'}
             options={options}
             control={control}
-            validateOptions={selectValidation}
             errors={errors}
           />
         </div>

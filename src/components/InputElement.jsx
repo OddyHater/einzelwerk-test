@@ -29,7 +29,7 @@ const errorClassName = cx(
   'pt-4px max-h-24px opacity-100'
 );
 
-const InputElement = ({ className, type, name, id, placeholder, register, validateOptions, errors }) => {
+const InputElement = ({ className, type, name, id, placeholder, register, errors }) => {
   const errorMessage = _.get(errors, name)
   const hasError = !!(errors && errorMessage);
 
@@ -41,7 +41,7 @@ const InputElement = ({ className, type, name, id, placeholder, register, valida
         id={id}
         placeholder={placeholder}
         className={inputClassName({ errors: hasError })}
-        {...register(name, validateOptions)}
+        {...register(name)}
       />          
       <ErrorMessage
         errors={errors}

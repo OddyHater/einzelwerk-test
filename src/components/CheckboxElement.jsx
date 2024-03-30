@@ -32,7 +32,7 @@ const CheckboxElement = ({ name, label, control, register, errors }) => {
               name={name}
               id={name}
               className="opacity-0 absolute" 
-              { ...register(name, { required: 'Обязательное поле' }) }
+              { ...register(name) }
             />
             <svg
               xmlns="http://www.w3.org/2000/svg"

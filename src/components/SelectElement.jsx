@@ -33,7 +33,7 @@ const errorClassName = cx(
   'pt-4px max-h-24px opacity-100'
 );
 
-const SelectElement = ({ className, id, options, control, validateOptions, errors }) => {
+const SelectElement = ({ className, id, options, control, errors }) => {
   const errorMessage = _.get(errors, id)
   const hasError = !!(errors && errorMessage);
 
@@ -42,7 +42,6 @@ const SelectElement = ({ className, id, options, control, validateOptions, error
       <Controller
         control={control}
         name={id}
-        rules={validateOptions}
         render={({ field: { onChange, ref } }) => (
           <ReactSelect
             instanceId={id}
