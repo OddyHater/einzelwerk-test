@@ -1,14 +1,14 @@
 "use client";
 
 import React from "react";
-import Select from "react-select";
-import { cva, cx } from "class-variance-authority";
-import clsx from "clsx";
-import { useForm, Controller } from "react-hook-form";
+import { cx } from "class-variance-authority";
+import { useForm } from "react-hook-form";
 
 import TitleContainer from "./TitleContainer";
 import Document from "./Document";
-import InputElement from "@/InputElement";
+import InputElement from "@/components/InputElement";
+import SelectElement from "./SelectElement";
+import CheckboxElement from "./CheckboxElement";
 
 const formWrapperClassName = cx(
   "flex-1",
@@ -35,48 +35,9 @@ const submitButtonClassName = cx(
   "rounded-10000px"
 );
 
-const inputContainerClassName = cx(
-  ''
-)
-
-const inputClassName = cx(
-  "h-64px w-full",
-  "px-20px",
-  "bg-gray-100",
-  "rounded-20px border border-ui-gray-200",
-  "font-medium text-lg leading-lg text-ui-gray-950",
-  "focus:outline-none"
-);
-
 const checkboxContainer = cx(
   "flex gap-16px items-center mt-auto",
   "text-lg leading-lg text-ui-gray-500"
-);
-
-const selectClassName = cx(
-  "h-64px",
-  "flex",
-  "bg-gray-100",
-  "rounded-20px border border-ui-gray-200",
-  "text-18px font-medium",
-  "justify-between"
-);
-
-const errorClassName = cva(
-  [
-    'relative box-border',
-    'max-h-0',
-    'text-base leading-base text-ui-red-1',
-    'transition-all'
-  ],
-  {
-    variants: {
-      errors: {
-        true: 'pt-4px max-h-24px opacity-100',
-        false: 'opacity-0'
-      }
-    }
-  }
 );
 
 const nameValidation = {
@@ -85,6 +46,14 @@ const nameValidation = {
     value: 2,
     message: 'Минимум 2 символа'
   }
+};
+
+const phoneValidation = {
+  required: 'Поле обязательно к заполнению'
+};
+
+const selectValidation = { 
+  required: "Веберете грейд"
 };
 
 const options = [
@@ -99,7 +68,7 @@ const Form = () => {
   const {
     register,
     handleSubmit,
-    reset,
+    control,
     formState: {
       errors,
     },
@@ -107,25 +76,23 @@ const Form = () => {
 
   const OnSubmit = (data) => {
     console.log(data);
-    reset();
   };
 
   return (
     <div className={formWrapperClassName}>
+
       <TitleContainer
         title={"Drop us a line"}
         subtitle={"Our documentary campaigns feature leading figures, organisations and leaders, in open and candid discussions."}
       />
-      {/* Вынести form в компонент */}
-      {/* Перенести стили в переменную */}
+
       <form
         className="flex-1 flex flex-col mt-32px"
         onSubmit={handleSubmit(OnSubmit)}
       >
+
         <div className={inputsContainerClassName}>
-          {/* Вынести инпуты в компоненты */}
-          {/* Перенести стили в переменную */}
-          
+
           <InputElement
             className={'col-span-full'}
             type={'text'}
@@ -137,70 +104,47 @@ const Form = () => {
             errors={errors}
           />
 
-          <input
-            type="text"
-            name="phone"
-            id="phone"
+          <InputElement 
+            className={'col-start-1 col-end-2'}
+            type={'text'}
+            name={'phone'}
+            id={'phone'}
             placeholder="Phone"
-            className={`${inputClassName} col-start-1 col-end-2`}
-            {...register("phone")}
+            register={register}
+            validateOptions={phoneValidation}
+            errors={errors}
           />
 
-          <input
+          <InputElement
+            className={'col-start-2 col-end-3'}
             type="text"
             name="email"
             id="email"
             placeholder="E-mail"
-            className={`${inputClassName} col-start-2 col-end-3`}
-            {...register("email")}
+            register={register}
+            validateOptions={phoneValidation}
+            errors={errors}
           />
 
-
-        <Select
-          instanceId={"grade"}
-            unstyled
-            maxMenuHeight={"auto"}
-            className={`${selectClassName} col-span-full`}
-            classNames={{
-              control: () =>
-              "flex-1 text-ui-gray-400 px-20px hover:cursor-pointer text-lg leading-lg",
-              menu: () => "mt-8px bg-ui-gray-100 rounded-20px font-arboria text-lg leading-lg",
-              option: ({ isFocused, isSelected }) =>
-              clsx(
-                isSelected && "text-ui-gray-950",
-                "px-24px py-18px [&:not(:last-child)]:border-b-2 border-ui-gray-200 hover:cursor-pointer text-ui-gray-400"
-                ),
-                singleValue: () => "text-ui-gray-950 font-arboria",
-              }}
-              placeholder="Your skill"
+          <SelectElement
+            className={'col-span-full'}
+            id={'grade'}
             options={options}
-        />
+            control={control}
+            validateOptions={selectValidation}
+            errors={errors}
+          />
         </div>
 
         <Document />
 
-        <div className={checkboxContainer}>
-          <label className="flex justify-start items-start">
-            <div className="bg-white border-[1px] rounded-8px border-ui-gray-200 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-ui-blue-600">
-              <input type="checkbox" className="opacity-0 absolute" />
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                className="fll-currenit hidden pointer-events-none"
-              >
-                <path
-                  d="M2.25 8L5.01193 11.5511C5.39578 12.0446 6.13331 12.0688 6.54869 11.6015L13.75 3.5"
-                  stroke="#4F46E5"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </div>
-            <div>I’m agree with every data you collect</div>
-          </label>
-        </div>
+        <CheckboxElement
+          name='privacy'
+          label='I’m agree with every data you collect'
+          control={control}
+          register={register}
+          errors={errors}
+        />
 
         <button className={submitButtonClassName} type="submit">
           Send
