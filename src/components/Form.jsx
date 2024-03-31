@@ -31,7 +31,7 @@ const submitButtonClassName = cx(
   "flex justify-center items-center",
   "h-64px mt-24px",
 
-  "font-thin text-lg leading-lg text-white",
+  "font-medium text-lg leading-lg text-white",
 
   "bg-ui-blue-600 hover:bg-ui-blue-500",
   "rounded-10000px"
@@ -50,7 +50,7 @@ const formSchema = z.object({
   phone: z.string().min(2),
   email: z.string().email(),
   grade: z.string(),
-  privacy: z.literal(true)
+  privacy: z.literal(true),
 })
 
 const Form = () => {
@@ -62,7 +62,10 @@ const Form = () => {
       errors,
     },
   } = useForm({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      files: [],
+    },
   });
 
   const OnSubmit = (data) => {
@@ -94,7 +97,7 @@ const Form = () => {
             errors={errors}
           />
 
-          <InputElement 
+          <InputElement
             className={'col-start-1 col-end-2'}
             type={'text'}
             name={'phone'}
@@ -123,7 +126,10 @@ const Form = () => {
           />
         </div>
 
-        <Document />
+        <Document
+          control={control}
+          name={'files'}
+        />
 
         <CheckboxElement
           name='privacy'
