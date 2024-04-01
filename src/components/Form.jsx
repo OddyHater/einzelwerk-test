@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod";
 
 import TitleContainer from "./TitleContainer";
-import Document from "./Document";
+import FileDrop from "./FileDrop";
 import InputElement from "@/components/InputElement";
 import SelectElement from "./SelectElement";
 import CheckboxElement from "./CheckboxElement";
@@ -51,6 +51,11 @@ const formSchema = z.object({
   email: z.string().email(),
   grade: z.string(),
   privacy: z.literal(true),
+  files: z.object({
+    path: z.string(),
+    name: z.string(),
+    size: z.number(),
+  }),
 })
 
 const Form = () => {
@@ -58,14 +63,12 @@ const Form = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: {
       errors,
     },
   } = useForm({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      files: [],
-    },
+    resolver: zodResolver(formSchema)
   });
 
   const OnSubmit = (data) => {
@@ -126,9 +129,12 @@ const Form = () => {
           />
         </div>
 
-        <Document
+        <FileDrop 
+          name='files'
           control={control}
-          name={'files'}
+          setValue={setValue}
+          register={register}
+          errors={errors}
         />
 
         <CheckboxElement

@@ -37,7 +37,8 @@ const dropAreaClassName = cva(
   [
     'max-w-[234px] flex-1 flex justify-center items-center',
     'border-[1px] border-ui-gray-400 border-dashed',
-    'rounded-20px'
+    'rounded-20px',
+    'cursor-pointer'
   ],
   {
     variants: {
@@ -64,12 +65,14 @@ const Document = ({ control, name }) => {
 
             </ul>
           </div>
-          <Dropzone onDrop={(file) => {
-            onChange(file[0].path);
-          }}>
+          <Dropzone
+            onChange={e => {
+              console.log(e);
+            }}
+          >
             {({ getInputProps, getRootProps, isDragActive }) => (
               <div className={dropAreaClassName({ isActive: isDragActive })} {...getRootProps()}>
-                <input {...getInputProps()} onBlur={onBlur} />
+                <input {...getInputProps(onChange)} onBlur={onBlur} />
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                   <path d="M12 5V19M5 12H19" stroke="#9CA3AF" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
