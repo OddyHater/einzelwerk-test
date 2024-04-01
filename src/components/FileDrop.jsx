@@ -1,7 +1,7 @@
-import React from 'react';
+import _ from 'lodash';
 
-const _ = require('lodash');
 import { cx, cva } from 'class-variance-authority';
+
 import { Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import Dropzone from 'react-dropzone';
@@ -55,7 +55,7 @@ const itemClassName = cx(
   'rounded-1000px'
 );
 
-const errorClassName = cx(  
+const errorClassName = cx(
   'absolute -bottom-6 box-border',
   'max-h-0',
   'text-base leading-base text-ui-red-1',
@@ -85,7 +85,7 @@ const FileDrop = ({ control, name, setValue, register, errors }) => {
             })
           }}
         >
-          {({ 
+          {({
             getRootProps, getInputProps, isDragActive, acceptedFiles
           }) => (
             <>
@@ -119,7 +119,7 @@ const FileDrop = ({ control, name, setValue, register, errors }) => {
         </div>
       )}
     />
-      
+
   </>
   );
 };

@@ -1,12 +1,10 @@
-import React from 'react';
+import _ from 'lodash';
+
+import { cx, cva } from 'class-variance-authority';
 
 import ReactSelect from 'react-select';
 import { Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-
-const _ = require('lodash');
-import { cx, cva } from 'class-variance-authority';
-import clsx from 'clsx';
 
 const selectClassName = cva(
   [
@@ -26,12 +24,44 @@ const selectClassName = cva(
   }
 );
 
-const errorClassName = cx(  
+const optionClassName = cva(
+  [
+    'px-24px py-18px',
+    'text-ui-gray-400',
+    '[&:not(:last-child)]:border-b-2 border-ui-gray-200',
+    'hover:cursor-pointer',
+  ],
+  {
+    variants: {
+      isSelected: {
+        true: "text-ui-gray-950"
+      },
+    }
+  }
+);
+
+const controlClassName = cx(
+  'flex-1 px-20px',
+  'text-lg leading-lg text-ui-gray-400',
+  'hover:cursor-pointer',
+);
+
+const menuClassName = cx(
+  'mt-8px',
+  'font-arboria text-lg leading-lg',
+  'bg-ui-gray-100 rounded-20px',
+)
+
+const errorClassName = cx(
   'relative box-border',
   'max-h-0',
   'text-base leading-base text-ui-red-1',
   'pt-4px max-h-24px opacity-100'
 );
+
+const singleValueClassName = cx(
+  'font-arboria text-ui-gray-950'
+)
 
 const SelectElement = ({ className, id, options, control, errors }) => {
   const errorMessage = _.get(errors, id)
@@ -49,14 +79,10 @@ const SelectElement = ({ className, id, options, control, errors }) => {
             maxMenuHeight={"auto"}
             className={selectClassName({ errors: hasError })}
             classNames={{
-              control: () => "flex-1 text-ui-gray-400 px-20px hover:cursor-pointer text-lg leading-lg",
-              menu: () => "mt-8px bg-ui-gray-100 rounded-20px font-arboria text-lg leading-lg",
-              option: ({ isSelected }) =>
-                clsx(
-                  isSelected && "text-ui-gray-950",
-                  "px-24px py-18px [&:not(:last-child)]:border-b-2 border-ui-gray-200 hover:cursor-pointer text-ui-gray-400"
-                ),
-              singleValue: () => "text-ui-gray-950 font-arboria",
+              control: () => controlClassName,
+              menu: () => menuClassName,
+              option: ({ isSelected }) => optionClassName({ isSelected: isSelected }),
+              singleValue: () => singleValueClassName,
             }}
             placeholder="Your skill"
             onChange={(selectedOption) => {

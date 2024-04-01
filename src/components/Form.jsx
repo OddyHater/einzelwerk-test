@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import { cx } from "class-variance-authority";
+
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod";
@@ -129,7 +129,7 @@ const Form = () => {
           />
         </div>
 
-        <FileDrop 
+        <FileDrop
           name='files'
           control={control}
           setValue={setValue}

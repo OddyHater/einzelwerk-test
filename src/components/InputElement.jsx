@@ -1,8 +1,7 @@
-import React from 'react';
+import _ from 'lodash';
 
-import { ErrorMessage } from '@hookform/error-message';
 import { cx, cva } from 'class-variance-authority';
-const _ = require('lodash');
+import { ErrorMessage } from '@hookform/error-message';
 
 const inputClassName = cva(
   [
@@ -22,7 +21,7 @@ const inputClassName = cva(
   }
 );
 
-const errorClassName = cx(  
+const errorClassName = cx(
   'relative box-border',
   'max-h-0',
   'text-base leading-base text-ui-red-1',
@@ -42,7 +41,7 @@ const InputElement = ({ className, type, name, id, placeholder, register, errors
         placeholder={placeholder}
         className={inputClassName({ errors: hasError })}
         {...register(name)}
-      />          
+      />
       <ErrorMessage
         errors={errors}
         name={name}

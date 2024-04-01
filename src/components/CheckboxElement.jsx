@@ -1,15 +1,14 @@
-import React from 'react';
+import { cx } from 'class-variance-authority';
 
 import { Controller } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
-import { cx } from 'class-variance-authority';
 
 const checkboxContainer = cx(
   "flex gap-16px items-center mt-auto",
   "text-lg leading-lg text-ui-gray-500"
 );
 
-const errorClassName = cx(  
+const errorClassName = cx(
   'relative box-border',
   'max-h-0',
   'text-base leading-base text-ui-red-1',
@@ -19,7 +18,7 @@ const errorClassName = cx(
 const CheckboxElement = ({ name, label, control, register, errors }) => {
   return (
     <>
-      <Controller 
+      <Controller
         control={control}
         name={name}
         className={checkboxContainer}
@@ -27,11 +26,11 @@ const CheckboxElement = ({ name, label, control, register, errors }) => {
         render={() => (
           <label className="flex justify-start items-start mt-auto">
           <div className="bg-white border-[1px] rounded-8px border-ui-gray-200 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-ui-blue-600">
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               name={name}
               id={name}
-              className="opacity-0 absolute" 
+              className="opacity-0 absolute"
               { ...register(name) }
             />
             <svg

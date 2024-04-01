@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { Controller } from 'react-hook-form';
 import Dropzone from 'react-dropzone';
 
