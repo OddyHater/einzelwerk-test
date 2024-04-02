@@ -48,7 +48,7 @@ const controlClassName = cx(
 
 const menuClassName = cx(
   'mt-8px',
-  'font-arboria text-lg leading-lg',
+  'text-lg leading-lg',
   'bg-ui-gray-100 rounded-20px',
 )
 
@@ -60,7 +60,7 @@ const errorClassName = cx(
 );
 
 const singleValueClassName = cx(
-  'font-arboria text-ui-gray-950'
+  'text-ui-gray-950'
 )
 
 const SelectElement = ({ className, id, options, control, errors }) => {

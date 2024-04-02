@@ -23,6 +23,10 @@ const formWrapperClassName = cx(
   "rounded-32px"
 );
 
+const formElementClassName = cx(
+  "flex-1 flex flex-col mt-32px"
+)
+
 const inputsContainerClassName = cx(
   "grid grid-cols-2 gap-16px"
 );
@@ -46,11 +50,11 @@ const options = [
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2),
-  phone: z.string().min(2),
-  email: z.string().email(),
-  grade: z.string(),
-  privacy: z.literal(true),
+  name: z.string().min(2, { message: 'Must be at least 2 characters long' }),
+  phone: z.string().min(2, { message: 'Must be at least 2 characters long' }),
+  email: z.string().email({ message: 'Invalid email' }),
+  grade: z.string({ message: 'Choose your grade' }),
+  privacy: z.literal(true, { message: 'Privacy agreement required' }),
   files: z.object({
     path: z.string(),
     name: z.string(),
@@ -84,7 +88,7 @@ const Form = () => {
       />
 
       <form
-        className="flex-1 flex flex-col mt-32px"
+        className={formElementClassName}
         onSubmit={handleSubmit(OnSubmit)}
       >
 
@@ -102,7 +106,7 @@ const Form = () => {
 
           <InputElement
             className={'col-start-1 col-end-2'}
-            type={'text'}
+            type={'tel'}
             name={'phone'}
             id={'phone'}
             placeholder="Phone"

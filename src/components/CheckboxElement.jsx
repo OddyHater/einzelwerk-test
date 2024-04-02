@@ -8,6 +8,21 @@ const checkboxContainer = cx(
   "text-lg leading-lg text-ui-gray-500"
 );
 
+const labelClassName = cx(
+  'flex justify-start items-start mt-auto'
+)
+
+const containerClassName = cx(
+  'flex flex-shrink-0 justify-center items-center',
+  'w-6 h-6 mr-2',
+  'bg-white border-[1px] border-ui-gray-200 rounded-8px focus-within:border-ui-blue-600'
+
+)
+
+const inputClassName = cx(
+  'opacity-0 absolute'
+)
+
 const errorClassName = cx(
   'relative box-border',
   'max-h-0',
@@ -24,13 +39,13 @@ const CheckboxElement = ({ name, label, control, register, errors }) => {
         className={checkboxContainer}
         rules={{ required: true }}
         render={() => (
-          <label className="flex justify-start items-start mt-auto">
-          <div className="bg-white border-[1px] rounded-8px border-ui-gray-200 w-6 h-6 flex flex-shrink-0 justify-center items-center mr-2 focus-within:border-ui-blue-600">
+          <label className={labelClassName}>
+          <div className={containerClassName}>
             <input
               type="checkbox"
               name={name}
               id={name}
-              className="opacity-0 absolute"
+              className={inputClassName}
               { ...register(name) }
             />
             <svg
@@ -39,7 +54,7 @@ const CheckboxElement = ({ name, label, control, register, errors }) => {
               height="16"
               viewBox="0 0 16 16"
               fill="none"
-              className="fll-currenit hidden pointer-events-none"
+              className="hidden pointer-events-none"
             >
               <path
                 d="M2.25 8L5.01193 11.5511C5.39578 12.0446 6.13331 12.0688 6.54869 11.6015L13.75 3.5"

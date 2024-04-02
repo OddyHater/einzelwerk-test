@@ -2,15 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  @font-face {
-    font-family: "Arboria-Medium";
-    src: url("https://db.onlinewebfonts.com/t/dda65d7f418f4ab23abf484c807c9f17.eot"),
-    url("https://db.onlinewebfonts.com/t/dda65d7f418f4ab23abf484c807c9f17.woff2")format("woff2"),
-    url("https://db.onlinewebfonts.com/t/dda65d7f418f4ab23abf484c807c9f17.woff")format("woff"),
-  }
-}
-
 body {
   display: flex;
   justify-content: center;

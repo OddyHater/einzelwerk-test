@@ -56,7 +56,7 @@ const itemClassName = cx(
 );
 
 const errorClassName = cx(
-  'absolute -bottom-6 box-border',
+  'box-border absolute -bottom-6 left-0',
   'max-h-0',
   'text-base leading-base text-ui-red-1',
   'pt-4px max-h-24px opacity-100'
