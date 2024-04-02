@@ -35,7 +35,7 @@ const dropAreaClassName = cva(
   {
     variants: {
       isActive: {
-        true: 'border-ui-blue-600'
+        true: 'border-indigo-600'
       },
       isError: {
         true: 'border-ui-red-1'
@@ -85,9 +85,7 @@ const FileDrop = ({ control, name, setValue, register, errors }) => {
             })
           }}
         >
-          {({
-            getRootProps, getInputProps, isDragActive, acceptedFiles
-          }) => (
+          {({ getRootProps, getInputProps, isDragActive, acceptedFiles}) => (
             <>
               <div className={textContainerClassName}>
                 <h3 className={titleClassName}>Dokument hochladen</h3>
