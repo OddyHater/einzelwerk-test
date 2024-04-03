@@ -12,6 +12,9 @@ body {
   background-color: theme('colors.ui-gray.bg');
 }
 
-input:checked + svg {
-  display: block;
+input:checked + div {
+  @apply border-blue-500;
+}
+input:checked + div svg {
+  @apply block;
 }
