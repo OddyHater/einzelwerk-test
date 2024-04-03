@@ -57,9 +57,9 @@ const itemClassName = cx(
 
 const errorClassName = cx(
   'box-border absolute -bottom-6 left-0',
-  'max-h-0',
   'text-base leading-base text-ui-red-1',
-  'pt-4px max-h-24px opacity-100'
+  'max-h-24px pt-4px',
+  'opacity-100',
 );
 
 const FileDrop = ({ control, name, setValue, register, errors }) => {
@@ -74,7 +74,7 @@ const FileDrop = ({ control, name, setValue, register, errors }) => {
       rules={{
         required: { value: true, message: 'This field is required' },
       }}
-      render={({ field: { onChange, onBlur }, fieldState }) => (
+      render={({ field: { onChange, onBlur } }) => (
         <div className={wrapperClassName}>
 
         <Dropzone

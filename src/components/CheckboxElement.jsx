@@ -9,26 +9,30 @@ const checkboxContainer = cx(
 
 const containerClassName = cx(
   'flex justify-start items-start mt-auto',
-  'text-lg leading-lg text-ui-gray-500'
-)
+);
 
 const checkboxClassname = cx(
   'flex flex-shrink-0 justify-center items-center',
   'w-6 h-6 mr-2',
-  'bg-white border-[1px] border-ui-gray-200 rounded-8px checked:border-ui-blue-600'
-
-)
+  'bg-white border-[1px] border-ui-gray-200 rounded-8px checked:border-ui-blue-600',
+);
 
 const inputClassName = cx(
   'opacity-0 absolute',
   'w-6 h-6',
+  'cursor-pointer'
+);
+
+const labelClassName = cx(
+  'text-lg leading-lg text-ui-gray-500',
+  'select-none cursor-pointer'
 )
 
 const errorClassName = cx(
   'relative box-border',
   'max-h-0',
   'text-base leading-base text-ui-red-1',
-  'pt-4px max-h-24px opacity-100'
+  'pt-4px max-h-24px opacity-100',
 );
 
 const CheckboxElement = ({ name, label, control, register, errors }) => {
@@ -55,7 +59,7 @@ const CheckboxElement = ({ name, label, control, register, errors }) => {
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                className='hidden text-blue-600 pointer-events-none'
+                className='hidden text-ui-blue-600 pointer-events-none'
               >
                 <path
                   d="M2.25 8L5.01193 11.5511C5.39578 12.0446 6.13331 12.0688 6.54869 11.6015L13.75 3.5"
@@ -64,7 +68,7 @@ const CheckboxElement = ({ name, label, control, register, errors }) => {
                 />
               </svg>
             </div>
-            <label htmlFor={name} className='select-none'>{label}</label>
+            <label htmlFor={name} className={labelClassName}>{label}</label>
           </div>
         )}
       />
