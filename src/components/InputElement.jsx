@@ -2,6 +2,7 @@ import _ from 'lodash';
 
 import { cx, cva } from 'class-variance-authority';
 import { ErrorMessage } from '@hookform/error-message';
+import InputMask from "react-input-mask";
 
 const inputClassName = cva(
   [
@@ -28,16 +29,19 @@ const errorClassName = cx(
   'pt-4px max-h-24px opacity-100'
 );
 
-const InputElement = ({ className, type, name, id, placeholder, register, errors }) => {
+const InputElement = ({ className, type, name, id, placeholder, mask, register, errors }) => {
   const errorMessage = _.get(errors, name)
   const hasError = !!(errors && errorMessage);
 
+  const elementMask = mask ? mask : '';
+
   return (
     <div className={className}>
-      <input
+      <InputMask
         type={type}
         name={name}
         id={id}
+        mask={elementMask}
         placeholder={placeholder}
         className={inputClassName({ errors: hasError })}
         {...register(name)}

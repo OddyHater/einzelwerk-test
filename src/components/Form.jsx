@@ -83,8 +83,8 @@ const Form = () => {
     <div className={formWrapperClassName}>
 
       <TitleContainer
-        title={"Drop us a line"}
-        subtitle={"Our documentary campaigns feature leading figures, organisations and leaders, in open and candid discussions."}
+        title={'Drop us a line'}
+        subtitle={'Our documentary campaigns feature leading figures, organisations and leaders, in open and candid discussions.'}
       />
 
       <form
@@ -109,17 +109,18 @@ const Form = () => {
             type={'tel'}
             name={'phone'}
             id={'phone'}
-            placeholder="Phone"
+            mask={'+7(999)999-99-99'}
+            placeholder={'Phone'}
             register={register}
             errors={errors}
           />
 
-          <InputElement
+          <InputElement 
             className={'col-start-2 col-end-3'}
-            type="text"
-            name="email"
-            id="email"
-            placeholder="E-mail"
+            type={'text'}
+            name={'email'}
+            id={'email'}
+            placeholder={'E-mail'}
             register={register}
             errors={errors}
           />
@@ -134,7 +135,7 @@ const Form = () => {
         </div>
 
         <FileDrop
-          name='files'
+          name={'files'}
           control={control}
           setValue={setValue}
           register={register}
@@ -142,8 +143,8 @@ const Form = () => {
         />
 
         <CheckboxElement
-          name='privacy'
-          label='I’m agree with every data you collect'
+          name={'privacy'}
+          label={'I’m agree with every data you collect'}
           control={control}
           register={register}
           errors={errors}
